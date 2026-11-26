@@ -24,8 +24,10 @@ Kitty is optional and its existing app can read the managed profile. Kitty
 uses the macOS Glass sound on the Mac and the system bell on Linux.
 
 Run `hx` to open Helix with Catppuccin Frappé. After activation, run `np`
-from any directory to apply changes to this Mac profile. If an older shell
-doesn't know `np`, open a fresh tab or run `exec zsh -l`.
+from any directory to apply changes to this Mac profile. On success, `np`
+stops all running Zellij sessions without prompting and opens a fresh Zellij
+window. Save work in those panes first. If an older shell doesn't know
+`np`, open a fresh tab or run `exec zsh -l`.
 
 Neovim reads the existing writable checkout at `~/.config/nvim`. On a new
 machine, clone it once if that directory is empty or absent:
