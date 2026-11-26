@@ -15,6 +15,8 @@ in
     sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
       "${config.home.homeDirectory}/.cargo/bin"
+      "/opt/homebrew/bin"
+      "/opt/homebrew/sbin"
     ];
   };
 
