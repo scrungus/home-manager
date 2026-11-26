@@ -23,6 +23,10 @@ Open a fresh shell and check that `zellij --version` reports 0.46 or later.
 Kitty is optional and its existing app can read the managed profile. Kitty
 uses the macOS Glass sound on the Mac and the system bell on Linux.
 
+Run `hx` to open Helix with Catppuccin Frappé. After activation, run `np`
+from any directory to apply changes to this Mac profile. If an older shell
+doesn't know `np`, open a fresh tab or run `exec zsh -l`.
+
 Neovim reads the existing writable checkout at `~/.config/nvim`. On a new
 machine, clone it once if that directory is empty or absent:
 
@@ -41,12 +45,23 @@ to the existing Home Manager module list, where `shared` is the input name.
 Use a Nixpkgs revision with Zellij 0.46 or later. Resolve any existing
 declarations of the same Kitty or Zellij files before switching.
 
+Run `zellij terminal` on the local desktop to open Zellij in its own window.
+This uses the shared Frappé palette and top tab bar on macOS and Ubuntu.
+The Ubuntu package needs the native terminal feature and a desktop session
+with X11 or Wayland.
+
+Press `Ctrl+T`, then `H` or `L` to switch tabs. Open a new tab in the
+focused shell's directory with `Ctrl+T`, then `N`, or open a desktop window
+in that directory with `Ctrl+T`, then `W`. The shared Zsh config reports
+the local directory to Zellij at each prompt.
+
 Keep the existing `c` alias and use Claude Code 2.1.295 or newer for native
 status reporting. Use Zellij's tabs for the per-agent status badge in any
 terminal. The shared configuration translates desktop notification sequences
 from panes into a terminal bell. An agent status marker by itself does not
 guarantee a bell. Enable the bell on the active Apple Terminal or GNOME
-Terminal profile.
+Terminal profile if using one of those emulators. In Zellij's own terminal,
+the bell is audible and desktop notifications are disabled.
 
 ## Check alerts
 
@@ -54,9 +69,24 @@ Terminal profile.
    This checks the terminal's audible bell separately from Zellij.
 2. Open two tabs in Zellij and run `c` in one. Check that a turn completing
    and a request for input each appear on the right Zellij tab.
-3. Repeat while watching the pane, on another tab, and in another app. The
-   Codex alias requests notifications when unfocused. Verify sound and focus
-   handling on each terminal, especially for Claude and the outer tab.
+3. Repeat while watching the pane, on another tab, and in another app. On Mac,
+   `c` inside Zellij plays Glass directly for Codex turn completions when
+   the pane is out of view. Codex approval prompts use the terminal bell.
+   Verify Claude sound and focus handling on Ubuntu separately.
 4. From a Zellij pane on Ubuntu, connect to VFOSv5 as usual and check Backspace.
    If it behaves differently, compare `TERM`, `stty -a`, and
    `infocmp "$TERM"` with a session opened directly from GNOME Terminal.
+
+## Reset Zellij sessions
+
+Save any work in the panes, then quit Zellij.app. From Apple Terminal,
+run these in order to stop the running sessions, clear saved sessions, and
+verify the list before reopening Zellij:
+
+```sh
+zellij kill-all-sessions
+zellij delete-all-sessions
+zellij list-sessions
+```
+
+This clears sessions and keeps the Home Manager settings.

@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = [ pkgs.neovim ];
+  programs.helix = {
+    enable = true;
+    settings.theme = "catppuccin_frappe";
+  };
   programs.zsh.shellAliases.vi = "nvim";
   home.sessionVariables.EDITOR = "nvim";
 
