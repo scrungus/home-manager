@@ -9,6 +9,7 @@
 
   outputs = { nixpkgs, home-manager, ... }: {
     homeManagerModules = {
+      agent-tools = ./modules/agent-tools.nix;
       terminal = ./modules/terminal.nix;
       editor = ./modules/editor.nix;
     };
@@ -16,6 +17,7 @@
     homeConfigurations.mac = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       modules = [
+        ./modules/agent-tools.nix
         ./modules/terminal.nix
         ./modules/editor.nix
         ./home.nix
