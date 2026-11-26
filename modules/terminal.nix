@@ -1,6 +1,25 @@
 { lib, pkgs, ... }:
+let
+  newZellijWindow = pkgs.writeShellScriptBin "zellij-new-window" (
+    lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
+      for app in "$HOME/Applications/Zellij.app" /Applications/Zellij.app; do
+        if [ -d "$app" ]; then
+          # Give Zellij time to create the window before asking macOS to focus it.
+          (
+            /bin/sleep 0.5
+            /usr/bin/open -a "$app"
+          ) &
+          break
+        fi
+      done
+    ''
+    + ''
+      exec ${pkgs.zellij}/bin/zellij terminal --working-directory "$PWD"
+    ''
+  );
+in
 {
-  home.packages = [ pkgs.zellij ];
+  home.packages = [ pkgs.zellij newZellijWindow ];
 
   assertions = [{
     assertion = lib.versionAtLeast pkgs.zellij.version "0.46.0";

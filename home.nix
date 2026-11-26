@@ -12,6 +12,7 @@ in
     username = "tyler";
     homeDirectory = "/Users/tyler";
     stateVersion = "26.05";
+    packages = [ (pkgs.callPackage ./packages/try-omarchy.nix { }) ];
     sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
       "${config.home.homeDirectory}/.cargo/bin"
@@ -43,7 +44,7 @@ in
         command nohup /bin/sh -c '
           zellij kill-all-sessions --yes
           unset ZELLIJ ZELLIJ_PANE_ID ZELLIJ_SESSION_NAME
-          exec zellij terminal
+          exec zellij-new-window
         ' </dev/null >"$log_dir/zellij-restart.log" 2>&1 &!
       }
 

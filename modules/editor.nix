@@ -3,7 +3,7 @@
   home.packages = [ pkgs.neovim ];
   programs.helix = {
     enable = true;
-    settings.theme = "catppuccin_frappe";
+    settings.theme = "catppuccin_mocha";
   };
   programs.zsh.shellAliases.vi = "nvim";
   home.sessionVariables.EDITOR = "nvim";

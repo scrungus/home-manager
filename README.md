@@ -23,7 +23,7 @@ Open a fresh shell and check that `zellij --version` reports 0.46 or later.
 Kitty is optional and its existing app can read the managed profile. Kitty
 uses the macOS Glass sound on the Mac and the system bell on Linux.
 
-Run `hx` to open Helix with Catppuccin Frappé. After activation, run `np`
+Run `hx` to open Helix with Catppuccin Mocha. After activation, run `np`
 from any directory to apply changes to this Mac profile. On success, `np`
 stops all running Zellij sessions without prompting and opens a fresh Zellij
 window. Save work in those panes first. If an older shell doesn't know
@@ -38,6 +38,11 @@ git clone https://github.com/scrungus/kickstart.nvim.git ~/.config/nvim
 
 Run `git -C ~/.config/nvim pull --ff-only` to update to the tip of the branch.
 
+The Mac profile installs [Try Omarchy](https://tryomarchy.com/) under
+`~/Applications/Home Manager Apps`. Open it and choose **Launch Omarchy**
+to download the guest image and start setup. The guest runs in a virtual
+machine and needs about 15 GB of free space.
+
 ## Work integration
 
 Add this repository as a flake input in the private work repo, or use a
@@ -48,7 +53,7 @@ Use a Nixpkgs revision with Zellij 0.46 or later. Resolve any existing
 declarations of the same Kitty or Zellij files before switching.
 
 Run `zellij terminal` on the local desktop to open Zellij in its own window.
-This uses the shared Frappé palette and top tab bar on macOS and Ubuntu.
+This uses the shared Mocha palette and top tab bar on macOS and Ubuntu.
 The Ubuntu package needs the native terminal feature and a desktop session
 with X11 or Wayland.
 
